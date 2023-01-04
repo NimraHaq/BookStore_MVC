@@ -1,0 +1,47 @@
+﻿@model EadProject.Models.SellerModel
+
+
+<ul class="navbar-nav me-auto mb-2 mb-lg-0" style="color: white">
+
+    <li class="nav-item px-2">
+        <a class="nav-link"
+           style="color: white"
+           onMouseOver="this.style.color='yellow'"
+           onmouseout="this.style.color ='white'"
+           aria-current="page"
+           asp-controller="Profile" asp-action="ProfileSellerPage" asp-route-id="@Model.Id">Your Profile</a>
+    </li>
+    <li class="nav-item px-2">
+        <a class="nav-link"
+           style="color: white"
+           onMouseOver="this.style.color='yellow'"
+           onmouseout="this.style.color ='white'"
+           aria-current="page"
+           asp-controller="Profile" asp-action="ProfileSellerPage" asp-fragment="currentOrders" asp-route-id="@Model.Id">Your Current Orders</a>
+    </li>
+    <li class="nav-item px-2">
+        <a class="nav-link"
+           style="color: white"
+           onMouseOver="this.style.color='yellow'"
+           onmouseout="this.style.color ='white'"
+           aria-current="page"
+           asp-controller="AddNewBook" asp-action="AddNewBookPage" asp-route-id="@Model.Id">Add new Books</a>
+    </li>
+    <li class="nav-item px-2">
+        <a class="nav-link"
+           style="color: white"
+           onMouseOver="this.style.color='yellow'"
+           onmouseout="this.style.color ='white'"
+           aria-current="page"
+           asp-controller="Profile" asp-action="ProfileSellerPage" asp-fragment="offeredBooks" asp-route-id="@Model.Id">Books you Offer</a>
+    </li>
+
+
+
+</ul>
+<div>
+    <a class="btn btn-outline-warning mx-2  btn-lg" asp-controller="Home" asp-action="HomePage">
+        Logout
+    </a>
+</div>
+

@@ -1,0 +1,41 @@
+﻿@*not a strongly typed view*@
+
+@{
+	ViewData["Title"] = "Login";
+}
+
+@section NavList
+{
+    <partial name="_NavBarList" model="@new UserModel()" />
+}
+
+
+
+<div class="catalog">
+	<div class="container pt-5  pb-5 row w-50 m-auto" style = "font-size : x-large; width: 60%;margin-left : 20%;">
+		<h1 style="font-family: 'Permanent Marker', cursive; font-size:4vw; color: navy" class="text-center my-3">Login To Your Account</h1>
+		
+		@if(ViewBag.notExists == true)
+		{
+			 <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert" style="font-size : large;">
+                <strong>Wrong </strong> username or password. Try again.
+
+            </div>
+		}
+
+		
+		<form class = "pt-3 pb-5" method="post">
+			<div class="form-group my-3">
+                <label for="userName" > Username</label>
+                <input class="form-control form-control-lg" name="Username" type="text" id="userName" required>
+            </div>
+            <div class="form-group my-3">
+                <label for="password" >Password</label>
+                <input class="form-control form-control-lg" name="Password" type = "password"  id="password" required>
+            </div>
+			
+			<input type="submit" class = "text-center btn my-2 btn-lg " style = "margin-left : 45%;background-color :navy;color:white;" />
+		</form>
+	</div>
+</div>
+

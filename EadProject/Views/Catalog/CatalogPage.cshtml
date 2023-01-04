@@ -1,0 +1,71 @@
+﻿@model List<EadProject.Models.BookModel>
+@{
+    ViewData["Title"] = "Catalog";
+
+}
+
+@section NavList
+    {
+    <partial name="_NavBarBuyer" model="ViewBag.user" />
+}
+
+    <p>
+        @ViewBag.user.Id
+        @ViewBag.user.Password
+        @ViewBag.user.UserName
+        @ViewBag.user.Name
+    </p>
+    <div class="catalog">
+        <div class="container p-3">
+            <h1 style="font-family: 'Permanent Marker', cursive; font-size:4vw; color: navy" class="text-center my-3">Catalog</h1>
+
+            @foreach (BookModel book in Model)
+        {
+
+            var IDs = new Dictionary<string, string>{
+        {"BookId" , Convert.ToString(book.Id) },
+        {"UserId" , Convert.ToString(ViewBag.user.Id) }
+        };
+
+            <div class="card col-md-3 mx-2 my-4" style="width: 18rem; display :inline-block;border:none;">
+                @if (book.BookPictureURL == null)
+                {
+                    <img class="card-img-top" src="~/images/slide1.jpg" alt="Card image cap" style="height: 13rem" asp-append-version="true">
+                }
+                else
+                {
+                    <img class="card-img-top" src=@book.BookPictureURL alt="Card image cap" style="height: 13rem" asp-append-version="true">
+
+                }
+                <div class="card-body text-center p-3 pb-4 pt-4" style="font-size :large">
+                    <h5 class="card-title" style="font-weight : bold;font-size :x-large"> @book.BookName</h5>
+                    <p>Author name : @book.BookAuthor</p>
+
+
+
+
+                    <!-- Button trigger modal -->
+                    @* <button type="button" class="btn " style="background-color:navy;color:white;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Details
+                </button>
+                <partial name="_BookDetails" model="@book" />*@
+
+
+
+
+
+                    <a asp-controller="Catalog" asp-action="BookDetailsPage" asp-all-route-data="@IDs" class="btn  my-1" style="background-color:navy;color:white;">show details</a>
+
+
+
+
+                    @*<a asp-controller="BookDetails" asp-action="ShowBook" asp-all-route-data="@IDs" class="btn p-2 pt-3 pb-3" style="background-color: navy;color:white;width:40%;">Details</a>
+                *@
+                    <a asp-controller="Cart" asp-action="CartPage" asp-all-route-data="@IDs" class="btn my-1 " style="background-color:navy;color:white;">Add to cart</a>
+
+                </div>
+            </div>
+        }
+    </div>
+
+</div>

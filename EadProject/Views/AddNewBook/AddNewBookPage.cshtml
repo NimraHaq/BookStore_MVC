@@ -1,0 +1,96 @@
+﻿@model EadProject.Models.BookModel
+@{
+    ViewData["Title"] = "Add new Book";
+
+}
+
+@section NavList
+    {
+    <partial name="_NavBarSeller" model="@ViewBag.user" />
+}
+
+    <div class="catalog">
+        <div class="container pt-5  pb-5 row w-50 m-auto" style="font-size : x-large; width: 60%;margin-left : 20%;">
+            <h1 style="font-family: 'Permanent Marker', cursive; font-size:4vw; color: navy" class="text-center mt-4 mb-2">Add New Book</h1>
+            @if (ViewBag.isAdded == true)
+        {
+            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="font-size : large;">
+                The book has been added successfully.
+            </div>
+        }
+
+        <form class="pt-1 pb-5" method="post" novalidate enctype="multipart/form-data" >
+
+            <div class="form-group my-3">
+                <label for="bookName" asp-for="BookName"></label>
+                <input class="form-control form-control-lg" asp-for="BookName" id="name" placeholder="Book name here">
+                <span asp-validation-for="BookName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group my-3">
+                <label for="bookAuthor" asp-for="BookAuthor"></label>
+                <input class="form-control form-control-lg" asp-for="BookAuthor" id="name" placeholder="Author name here">
+                <span asp-validation-for="BookAuthor" class="text-danger"></span>
+            </div>
+
+            <div class="form-group my-3">
+                <label for="bookAuthor" asp-for="Price"></label>
+                <input class="form-control form-control-lg" asp-for="Price" id="name">
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group my-3">
+                <label for="bookAuthor" asp-for="shortDescription"></label>
+                <textarea class="form-control form-control-lg" asp-for="shortDescription" rows="3" id="name" placeholder="Enter short description of your book."></textarea>
+                <span asp-validation-for="shortDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group my-3">
+                <label for="bookAuthor" asp-for="NumberOfPages"></label>
+                <input class="form-control form-control-lg" asp-for="NumberOfPages" id="name">
+                <span asp-validation-for="NumberOfPages" class="text-danger"></span>
+            </div>
+
+            <div class="form-group my-3">
+                <label for="bookAuthor" asp-for="Language"></label>
+                <input class="form-control form-control-lg" asp-for="Language" id="name">
+                <span asp-validation-for="Language" class="text-danger"></span>
+            </div>
+
+            <div class="form-group my-4">
+                    <label asp-for="Category" ></label>
+                    <br />
+                    <select asp-for="Category" class="form-control-lg " >
+                        <option>Mystery</option>
+                        <option>Comic books or graphic novels</option>
+                        <option>Islamic Literature</option>
+                        <option>Fantasy</option>
+                        <option>History</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <!--picture-->
+            <div class="form-group">
+                <label asp-for="BookPicture" class="control-label"></label>
+                <div class="custom-file">
+                    <input asp-for="BookPicture" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <span asp-validation-for="BookPicture" class="text-danger"></span>
+            </div>
+
+
+            <input type="hidden" asp-for="SellerId" value="@ViewBag.user.Id" />
+
+
+
+            <input type="submit" value="Add Book" class="text-center btn my-2 btn-lg " style="margin-left : 45%;background-color :navy;color:white;" />
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

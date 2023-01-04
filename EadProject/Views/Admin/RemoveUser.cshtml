@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Remove User";
+}
+@section NavList
+{
+    <partial name="_NavBarAdmin" />
+}
+<div class="catalog">
+    <div class="container p-3">
+        <h1 style="font-family: 'Permanent Marker', cursive; font-size:5vw; color: lightseagreen;" class="text-center my-3">Remove User</h1>
+
+        @if (ViewBag.isRemoved == true)
+        {
+            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="font-size : large;margin-left : 20%;margin-right:20%;">
+                User deleted successfully.
+            </div>
+        }
+        @if (ViewBag.ifNotExists == true)
+        {
+            <p style="color:red;margin-left : 30%;font-size:2rem" class="mt-5">The username you entered does not exists.</p>
+        }
+
+
+        <form class="pt-3 pb-5" method="post">
+            <div class="row" style="margin-left : 30%;">
+                <div class="form-group my-3 col-6">
+                    <label for="removeUser" class="h5"> Enter the username of user you want to remove : </label>
+                    <input class="form-control form-control-lg" name="removeUser" type="text" id="userName" required>
+                </div>
+            </div>
+            <input type="submit" class="text-center btn my-2 btn-lg" style="margin-left : 45%;background-color :navy;color:white;" />
+
+
+
+        </form>
+    </div>
+</div>

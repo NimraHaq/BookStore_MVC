@@ -1,0 +1,166 @@
+﻿@*@model EadProject.Models.SearchBookObject*@
+@{
+    ViewData["Title"] = "Search";
+}
+
+@section NavList
+    {
+    <partial name="_NavBarBuyer" model="ViewBag.user" />
+}
+
+
+
+
+    <div class="catalog">
+        <div class="container p-3">
+
+            <h1 style="font-family: 'Permanent Marker', cursive; font-size:4vw; color: navy;" class="text-center my-3">Search</h1>
+            <p style="font-size:2vw; color:gray;" class="mt-4 ms-2">Choose filters</p>
+            <form id="filterForm" method="post">
+                <input class="col" type="hidden" name="buyerId" id="buyerId" value="@ViewBag.user.Id">
+                <div class="row">
+
+                    <div class="form-group mb-4 mx-2 col">
+                        <label for="Category">Category</label>
+                        <br />
+                        <select name="Category" class="form-control-lg " id="Category">
+                            <option value="Mystery">Mystery</option>
+                            <option value="Comic books or graphic novels">Comic books or graphic novels</option>
+                            <option value="Islamic Literature">Islamic Literature</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="History">History</option>
+                            <option value="All" selected>All</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-4 mx-2 col">
+                        <label for="PriceRange">Price Range</label>
+                        <br />
+                        <select name="PriceRange"  class="form-control-lg " id="PriceRange">
+                            <option value="low">Rs.20 - Rs.1000</option>
+                            <option value="medium">Rs.1001 - Rs.2000</option>
+                            <option value="high">Greater than Rs.2000</option>
+                            <option value="AllPrice" selected>All Books</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-4 mt-3 mx-2 col">
+                        <input class="form-control form-control-lg"  name="searchBook" id="searchBook" placeholder="Book to search">
+                    </div>
+
+
+                    @*<div class="col mt-2 me-3"> onclick="SearchBooks()" 
+                        <input type="submit" class="text-center btn my-2 btn-lg " style="margin-left : 45%;background-color :navy;color:white;" value="search" />
+                           
+                    </div>*@
+
+                    <div class="col mt-2 me-3"> @*onclick="SearchBooks()" *@
+                        <input type="submit"  class="text-center btn my-2 btn-lg " style="margin-left : 45%;background-color :navy;color:white;" value="search" />
+                           
+                    </div>
+                </div>
+            </form>
+            <hr />
+            @*<div id= "searchResults">
+
+            </div>*@
+           <div class="searchResults">
+                @if (ViewBag.BookFound == true)
+            {
+                @foreach (BookModel book in ViewBag.ResultBooks)
+                {
+
+                    var IDs = new Dictionary<string, string>{
+            {"BookId" , Convert.ToString(book.Id) },
+            {"UserId" , Convert.ToString(ViewBag.user.Id) }
+            };
+
+                    <div class="card col-md-3 mx-2 my-4" style="width: 18rem; display :inline-block;border:none;">
+                        @if (book.BookPictureURL == null)
+                        {
+                            <img class="card-img-top" src="~/images/slide1.jpg" alt="Card image cap" style="height: 13rem" asp-append-version="true">
+                        }
+                        else
+                        {
+                            <img class="card-img-top" src=@book.BookPictureURL alt="Card image cap" style="height: 13rem" asp-append-version="true">
+
+                        }
+                        <div class="card-body text-center p-3 pb-4 pt-4" style="font-size :large">
+                            <h5 class="card-title" style="font-weight : bold;font-size :x-large"> @book.BookName</h5>
+                            <p>Author name : @book.BookAuthor</p>
+                        </div>
+                        <div class="mx-5 mb-4">
+                            <a asp-controller="Catalog" asp-action="BookDetailsPage" asp-all-route-data="@IDs" class="btn  my-1 mb-2 " style="background-color:navy;color:white;">show details</a>
+
+                            <a asp-controller="Cart" asp-action="CartPage" asp-all-route-data="@IDs" class="btn my-1 mb-2 " style="background-color:navy;color:white;">Add to cart</a>
+
+                        </div>
+
+                    </div>
+
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@*@section Scripts
+{
+    <script type="text/javascript">
+function getHtml(jsonList) {
+    var myHtml = "";
+    for (var i = 0; i < jsonList.length; i++) {
+
+        if (jsonList[i].BookPictureURL != null) {
+            myHtml += `
+            <div class= card col-md-3 mx-2 my-4" style="width: 18rem; display :inline-block;border:none;">
+                            <div class="card col-md-3 mx-2 my-4" style="width: 18rem; display :inline-block;border:none;">
+                            <img class="card-img-top" src=${jsonList[i].BookPictureURL} alt="Card image cap" style="height: 13rem" asp-append-version="true">
+                              <div class="card-body text-center p-3 pb-4 pt-4" style="font-size :large">
+                            <h5 class="card-title" style="font-weight : bold;font-size :x-large">${jsonList[i].BookName}</h5>
+                            <p>Author name :${jsonList[i].BookAuthor} </p>
+                        </div>
+                        </div>`;
+        }
+        else {
+            myHtml += `
+            <div class="card col-md-3 mx-2 my-4" style="width: 18rem; display :inline-block;border:none;">
+                            <div class="card col-md-3 mx-2 my-4" style="width: 18rem; display :inline-block;border:none;">
+                            <img class="card-img-top" src="\Images\history.jpg"  alt="Card image cap" style="height: 13rem" asp-append-version="true">
+                              <div class="card-body text-center p-3 pb-4 pt-4" style="font-size :large">
+                            <h5 class="card-title" style="font-weight : bold;font-size :x-large">${jsonList[i].BookName}</h5>
+                            <p>Author name :${jsonList[i].BookAuthor} </p>
+                        </div>
+                        </div>
+
+        `;
+        }
+    }
+    return myHtml;
+}
+
+function SearchBooks() {
+    var data = $("#filterForm").serialize();
+    $.ajax({
+        type: 'POST',
+        url: '/Search/SearchPage',
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+        data: data,
+        success: function(result) {
+            alert('Successfully received Data ');
+            alert(result);
+            console.log(result);
+
+            $('#searchResults').html(getHtml(result))
+            //var myDiv = document.getElementById("searchResults");
+            //myDiv.innerHTML = getHtml(result);
+        },
+        error: function() {
+            alert('Failed to receive the Data');
+            console.log('Failed ');
+        }
+    })
+}
+
+</script>
+}*@

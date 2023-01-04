@@ -1,0 +1,44 @@
+﻿@model EadProject.Models.BuyerModel
+
+
+<ul class="navbar-nav me-auto mb-2 mb-lg-0" style="color: white">
+
+    <li class="nav-item px-2">
+        <a class="nav-link"
+           style="color: white"
+           onMouseOver="this.style.color='yellow'"
+           onmouseout="this.style.color ='white'"
+           aria-current="page"
+           asp-controller="Profile" asp-action="ProfileBuyerPage" asp-route-id="@Model.Id">Your Profile</a>
+    </li>
+    <li class="nav-item px-2">
+        <a class="nav-link"
+           style="color: white"
+           onMouseOver="this.style.color='yellow'"
+           onmouseout="this.style.color ='white'"
+           aria-current="page"
+           asp-controller="Catalog" asp-action="CatalogPage" asp-route-id="@Model.Id">Catalog</a>
+    </li>
+    <li class="nav-item px-2">
+        <a class="nav-link"
+           style="color: white"
+           onMouseOver="this.style.color='yellow'"
+           onmouseout="this.style.color ='white'"
+           aria-current="page"
+           asp-controller="Search" asp-action="SearchPage" asp-route-id="@Model.Id">Search</a>
+    </li>
+    <li class="nav-item px-2">
+        <a class="nav-link"
+           style="color: white"
+           onMouseOver="this.style.color='yellow'"
+           onmouseout="this.style.color ='white'"
+           aria-current="page"
+           asp-controller="Cart" asp-action="DisplayCart" asp-route-id="@Model.Id">Cart</a>
+    </li>
+
+</ul>
+<div>
+    <a class="btn btn-outline-warning mx-2  btn-lg" asp-controller="Home" asp-action="HomePage">
+        Logout
+    </a>
+</div>

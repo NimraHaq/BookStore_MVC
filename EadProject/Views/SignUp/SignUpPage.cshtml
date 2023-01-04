@@ -1,0 +1,104 @@
+﻿@model EadProject.Models.UserModel
+@{
+    ViewData["Title"] = "SignUp";
+}
+
+<script type="text/javascript">
+    function submitStudent() {
+        var data = $("#signUpForm").serialize();
+        console.log(data);
+        $.ajax({
+            type: 'POST',
+            url: '/SignUp/SignUpPage',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            data: data,
+            success: function(result) {
+                alert('Successfully received Data ');
+                console.log(result);
+            },
+            error: function() {
+                alert('Failed to receive the Data');
+                console.log('Failed ');
+            }
+        })
+    }
+</script>
+
+
+
+
+
+@section NavList
+    {
+    <partial name="_NavBarList" model="@new UserModel()" />
+}
+    <div class="catalog">
+        <div class="container pt-5  pb-5 row w-50 m-auto" style="font-size : x-large; width: 60%;margin-left : 20%;">
+            <h1 style="font-family: 'Permanent Marker', cursive; font-size:4vw; color: navy" class="text-center mt-4 mb-2">Create Account</h1>
+            @if (ViewBag.isCreated == true)
+        {
+            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="font-size : large;">
+                <strong>Congratulations!</strong> Your account has been created successfully.
+                <a asp-controller="Login" asp-action="LoginPage">Login</a> to continue.
+            </div>
+        }
+        <h3 class="mt-5 fw-bolder" style="color:lightseagreen">Sign Up and start exploring!</h3>
+        <form class="pt-1 pb-5" method="post" novalidate enctype="multipart/form-data" id="signUpForm">
+            @*data-ajax="true">*@
+            <div class="form-group my-3">
+                <label for="name" asp-for="Name"></label>
+                <input class="form-control form-control-lg" asp-for="Name" id="name" placeholder="Your name here">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group my-3">
+                <label for="userName" asp-for="UserName"> </label>
+                <input class="form-control form-control-lg" asp-for="UserName" id="userName" placeholder="e.g. xyz123 (should not contain spaces)">
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            
+            <div asp-validation-summary="ModelOnly" style="color:red"></div>
+            <div class="form-group my-3">
+                <label for="password" asp-for="Password"></label>
+                <input class="form-control form-control-lg" asp-for="Password" id="password" placeholder="Should be 8 characters. ">
+                <span asp-validation-for="Password" class="text-danger"></span>
+
+            </div>
+            <!--picture-->
+            <div class="form-group">
+                <label asp-for="ProfilePicture" class="control-label"></label>
+                <div class="custom-file">
+                    <input asp-for="ProfilePicture" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+            </div>
+            <!--Role-->
+            <div class="form-check my-3">
+                <input class="form-check-input" type="radio" asp-for="Role" value="buyer" checked>
+                <label class="form-check-label" for="buyer">
+                    Buyer
+                </label>
+            </div>
+            <div class="form-check my-3">
+                <input class="form-check-input" type="radio" asp-for="Role" value="seller">
+                <label class="form-check-label" for="seller">
+                    Seller
+                </label>
+            </div>
+            <br />
+            <div  style="font-size : large;">
+                <strong>Already have an account? </strong> 
+                <a asp-controller="Login" asp-action="LoginPage">Login</a> to continue.
+            </div>
+            <br />
+            <input type="submit" value="SignUp" class="text-center btn my-2 btn-lg " style="margin-left : 45%;background-color :navy;color:white;" />
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

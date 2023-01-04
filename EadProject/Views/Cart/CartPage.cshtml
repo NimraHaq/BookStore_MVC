@@ -1,0 +1,44 @@
+﻿@model List<EadProject.Models.BookModel>
+@{
+    ViewData["Title"] = "Your Cart";
+
+}
+
+@section NavList
+    {
+    <partial name="_NavBarBuyer" model="@ViewBag.user" />
+}
+
+    <div class="catalog">
+        <div class="container pt-3 pb-5">
+            <h1 style="font-family: 'Permanent Marker', cursive; font-size:4vw; color: navy" class="text-center my-3">Your Cart</h1>
+            @if (ViewBag.ifBooks != null)
+        {
+            <p>@ViewBag.ifBooks</p>
+        }
+        @if(Model  != null)
+        {
+        @foreach (BookModel book in Model)
+        {
+            if (book != null)
+            {
+                <div class="card col-md-3 mx-2 my-4" style="width: 18rem; display :inline-block;border:none;">
+                    <img class="card-img-top" src=@book.BookPictureURL alt="Card image cap" style="height: 10rem" asp-append-version="true">
+                    <div class="card-body text-center">
+                        <h5 class="card-title" style="font-weight : bold">@book.BookName</h5>
+                        <p>Author name : @book.BookAuthor</p>
+                        <a class="btn" style="background-color: navy;color:white;">Delete From Cart</a>
+                    </div>
+                </div>
+            }
+        }
+        }
+        <br />
+        <br />
+        <p class="text-center"><span style="font-weight:bold">Total - </span>@ViewBag.Total </p>
+        <br />
+        <a asp-controller="Catalog" asp-action="CatalogPage" asp-route-id="@ViewBag.user.Id" class="btn" style="background-color:navy;color:white;margin-left:40%;">Continue shopping</a>
+        <a asp-controller="Checkout" asp-action="CheckoutPage" asp-route-id="@ViewBag.user.Id" class="btn mx-2" style="background-color:navy;color:white;">Checkout</a>
+
+    </div>
+</div>

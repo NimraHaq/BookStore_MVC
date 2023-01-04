@@ -1,0 +1,29 @@
+﻿@model EadProject.Models.UserModel
+
+
+
+<ul class="navbar-nav me-auto mb-2 mb-lg-0" style="color: white">
+
+    <li class="nav-item px-2">
+        <a class="nav-link"
+           style="color: white"
+           onMouseOver="this.style.color='yellow'"
+           onmouseout="this.style.color ='white'"
+           aria-current="page"
+           asp-controller="Home" asp-action="homePage">Home</a>
+    </li>
+    <li class="nav-item px-2">
+        <a class="nav-link"
+           style="color: white"
+           onMouseOver="this.style.color='yellow'"
+           onmouseout="this.style.color ='white'"
+           aria-current="page"
+           asp-controller="Home" asp-action="homePage">About Us</a>
+    </li>
+</ul>
+<div>
+    <a class="btn btn-warning mx-2  btn-lg" asp-controller="SignUp" asp-action="SignUpPage">Sign-Up</a>
+    <a class="btn btn-outline-warning mx-2  btn-lg" asp-controller="Login" asp-action="LoginPage">
+        Login
+    </a>
+</div>

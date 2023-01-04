@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Admin View";
+}
+@section NavList
+{
+    <partial name="_NavBarAdmin" />
+}
+<div class="catalog">
+    <div class="container p-3">
+        <h1 style="font-family: 'Permanent Marker', cursive; font-size:5vw; color: lightseagreen;" class="text-center my-3">Admin View</h1>
+        <p class="mt-5 mb-2 " style="margin-left:20%;font-size:2rem;">Following are the options available for admin : </p>
+        <div style="margin-left:40%;" class="mb-5 mt-2">
+            <div class="mx-5 my-4">
+                <a asp-controller="Admin" asp-action="RemoveUser" class="btn  my-1 mb-2 " style="background-color:lightseagreen;color:white;">Remove User</a>
+            </div>
+            <div class="mx-5 my-4">
+                <a asp-controller="Admin" asp-action="RemoveBook" class="btn  my-1 mb-2 " style="background-color:lightseagreen;color:white;">Remove Book</a>
+            </div>
+        </div>
+
+    </div>
+</div>

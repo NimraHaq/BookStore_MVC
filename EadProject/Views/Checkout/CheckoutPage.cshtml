@@ -1,0 +1,41 @@
+﻿@model EadProject.Models.Order
+@{
+    ViewData["Title"] = "Checkout";
+    BuyerModel thisUser = ViewBag.user;
+}
+
+@section NavList
+    {
+    <partial name="_NavBarBuyer" model="@thisUser" />
+}
+
+    <div class="catalog">
+        <div class="container pt-3 pb-5" style="font-size : x-large; width: 60%;margin-left : 20%;">
+            <h1 style="font-family: 'Permanent Marker', cursive; font-size:4vw; color: navy" class="text-center my-3">Checkout</h1>
+
+            <form method="post">
+                <div class="form-group my-4">
+                    <label asp-for="BuyerID" >User ID : </label>
+                    <select asp-for="BuyerID" class="form-control-lg mx-5 px-5" >
+                        <option>@thisUser.Id</option>
+                    </select>
+                </div>
+                <div class="form-group my-4">
+                    <label for="address">Delivery address : </label>
+                    <textarea asp-for="DeliveryAdress" class="form-control form-control-lg" id="address" name="address" rows="3" placeholder="your address" required></textarea>
+                </div>
+                <div class="form-check mb-4">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck" checked>
+                    <label class="form-check-label" for="defaultCheck2">
+                        Cash on Delivery
+                    </label>
+                </div>
+                <input type="submit" class="btn" style="background-color:navy;color:white;margin-left:40%;" value="Place Order" />
+
+
+
+            </form>
+
+
+        </div>
+    </div>

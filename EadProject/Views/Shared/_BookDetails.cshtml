@@ -1,0 +1,108 @@
+﻿@model EadProject.Models.BookModel;
+
+@{
+    var IDs = new Dictionary<string, string>{
+        {"BookId" , Convert.ToString(Model.Id) },
+        {"UserId" , Convert.ToString(ViewBag.user.Id) }
+        };
+
+}
+
+<!-- Modal -->
+<div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <p>
+            @ViewBag.user.Id
+            @ViewBag.user.Password
+            @ViewBag.user.UserName
+            @ViewBag.user.Name
+        </p>
+        <div class="modal-content row">
+            <h1 style="font-family: 'Permanent Marker', cursive; font-size:4vw; color: #FF0066;" class="text-center my-3">@Model.BookName</h1>
+
+
+            <!--Sliding images-->
+            <div class=" my-4 px-3">
+                <!-- Slide show images  -->
+                <div id="carouselExampleCaptions"
+                     class="carousel slide m-0"
+                     data-mdb-ride="carousel" style="display:inline-block;">
+                    <div class="carousel-indicators">
+                        <button type="button"
+                                data-mdb-target="#carouselExampleCaptions"
+                                data-mdb-slide-to="0"
+                                class="active"
+                                aria-current="true"
+                                aria-label="Slide 1"></button>
+                        <button type="button"
+                                data-mdb-target="#carouselExampleCaptions"
+                                data-mdb-slide-to="1"
+                                aria-label="Slide 2"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            @if(Model.BookPictureURL == null)
+                            {
+                            <img src="~/images/slide1.jpg"
+                                 class="d-block w-100 img-fluid"
+                                 style="width: 100%; "
+                                 alt="Wild Landscape" asp-append-version="true" />
+                            }
+                            else
+                            {
+                            <img src=@Model.BookPictureURL
+                                 class="d-block w-100 img-fluid"
+                                 style="width: 100%; "
+                                 alt="Wild Landscape" asp-append-version="true" />
+                            }
+                        </div>
+                        <div class="carousel-item">
+                            @if(Model.BookPictureURL == null)
+                            {
+                            <img src="~/images/slide1.jpg"
+                                 class="d-block w-100 img-fluid"
+                                 style="width: 100%; "
+                                 alt="Wild Landscape" asp-append-version="true" />
+                            }
+                            else
+                            {
+                            <img src=@Model.BookPictureURL
+                                 class="d-block w-100 img-fluid"
+                                 style="width: 100%; "
+                                 alt="Wild Landscape" asp-append-version="true" />
+                            }
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev"
+                            type="button"
+                            data-mdb-target="#carouselExampleCaptions"
+                            data-mdb-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next"
+                            type="button"
+                            data-mdb-target="#carouselExampleCaptions"
+                            data-mdb-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="px-3 py-3" style="font-size :large; font-weight :600">
+                <p style="color:blue">By : @Model.BookAuthor</p>
+                <p>@Model.shortDescription</p>
+                <hr />
+                <p><span style="font-weight:bold">Category - </span>@Model.Category</p>
+                <p><span style="font-weight:bold">Number of pages - </span>@Model.NumberOfPages</p>
+                <p><span style="font-weight:bold">Langauge - </span>@Model.Language</p>
+                <hr />
+                <p><span style="font-weight:bold">Price :  </span>@Model.Price</p>
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

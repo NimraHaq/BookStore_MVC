@@ -1,0 +1,90 @@
+﻿@model EadProject.Models.BuyerModel
+@{
+    ViewData["Title"] = "Profile Page";
+    BuyerModel user = new BuyerModel()
+            {
+                Id = Model.Id,
+                Name = Model.Name,
+                UserName = Model.UserName,
+                Password = Model.Password
+            };
+}
+
+@section NavList
+    {
+    <partial name="_NavBarBuyer" model="@user" />
+}
+    <p>
+        @user.Id
+        @user.Password
+        @user.UserName
+        @user.Name
+        buyer profile page
+    </p>
+
+
+    <div class="catalog">
+        <div class="container pt-3 pb-5" style=" width: 60%;">
+            <h1 style="font-family: 'Permanent Marker', cursive; font-size:4vw; color: navy" class="text-center mb-3 mt-5">@Model.Name</h1>
+            <div class="text-center my-5" style="font-size : x-large;">
+
+                <div class="container1">
+                    @if (@Model.ProfilePictureURL == null)
+                {
+                    <img src="~/Images/profile.png" class="rounded-circle image" style="width : 100%;height:100%;"
+                     alt="Profile Picture" />
+                }
+                else
+                {
+                    <img src=@Model.ProfilePictureURL class="rounded-circle image" style="width : 100%;height:100%;"
+                     alt="Profile Picture" />
+                }
+                <div class="middle text-center">
+                    <label class="my-3 text">
+                        Update Profile Picture
+                        <input type="file" name="profilePicture" accept="image/png, image/jpeg" />
+                    </label>
+                </div>
+            </div>
+
+            <div>
+                <h5 class="mb-2 display-5"><strong>@Model.Name</strong></h5>
+                <p class="text-muted">@Model.UserName</p>
+                <p class="text-muted">Buyer</p>
+            </div>
+        </div>
+
+        <br />
+        <br />
+
+        <h1 id="allOrders" style="font-family: 'Permanent Marker', cursive; font-size:4vw; color: navy" class="text-center mb-3 mt-5">All Orders</h1>
+        @for (int i = 0; i < 3; i++)
+        {
+            <div class="card col-md-3  my-5" style="width: 18rem; display :inline-block;border:none;">
+                <img class="card-img-top" src="~/images/history.jpg" asp-append-version="true" alt="Card image cap" style="height: 10rem">
+                <div class="card-body text-center">
+                    <h5 class="card-title" style="font-weight : bold">BookName</h5>
+                    <p>Author name : BookAuthor</p>
+                    <p>shortDescription</p>
+                    <hr />
+                    <p><span style="font-weight:bold">Category - </span>Category</p>
+                    <p><span style="font-weight:bold">Number of pages - </span>NumberOfPages</p>
+                    <p><span style="font-weight:bold">Langauge - </span>Language</p>
+                    <hr />
+                    <p><span style="font-weight:bold">Quantity :  </span>Quantity</p>
+                    <p><span style="font-weight:bold">Delivery status :  </span>true/false</p>
+                </div>
+            </div>
+        }
+
+
+
+        <br /><br />
+
+        <a class="btn  " style="background-color:navy;color:white;" asp-controller="Home" asp-action="HomePage">
+            Logout
+        </a>
+
+
+    </div>
+</div>
